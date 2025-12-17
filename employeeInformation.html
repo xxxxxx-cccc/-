@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="employeeCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="employeeCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="employeeCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">个人信息</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/employee/toEmployeeMain}">主页</a></li>
+                    <li class="breadcrumb-item active">个人信息</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <table class="table table-hover">
+                        <tr>
+                            <td text-align="center">工号：</td>
+                            <td th:text="${employee.employeeAccount}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">姓名：</td>
+                            <td th:text="${employee.employeeName}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">性别：</td>
+                            <td th:text="${employee.employeeGender}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">年龄：</td>
+                            <td th:text="${employee.employeeAge}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">入职时间：</td>
+                            <td th:text="${employee.entryTime}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">职务：</td>
+                            <td th:text="${employee.staff}"></td>
+                        </tr>
+                        <tr>
+                            <td text-align="center">备注：</td>
+                            <td th:text="${employee.employeeMessage}"></td>
+                        </tr>
+                    </table>
+                    <div style="text-align:center;margin-bottom:15px">
+                        <a th:href="@{/employee/toUpdateEmployeeInfo}">
+                            <input type="button" class="btn btn-outline-primary" value="编辑个人信息">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="employeeCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="employeeCommon::common-scripts"></div>
+</body>
+</html>

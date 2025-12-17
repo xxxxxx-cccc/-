@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.milotnt.mapper.EmployeeMapper">
+
+    <select id="findAll" resultType="employee">
+        SELECT *
+        FROM employee
+    </select>
+
+    <select id="selectByAccountAndPassword" parameterType="com.milotnt.pojo.Employee" resultType="com.milotnt.pojo.Employee">
+        select * from employee
+        where employee_account = #{employeeAccount}
+        and employee_password = #{employeePassword}
+    </select>
+
+    <delete id="deleteByEmployeeAccount" parameterType="java.lang.Integer">
+        DELETE
+        FROM employee
+        WHERE employee_account = #{employeeAccount}
+    </delete>
+
+    <insert id="insertEmployee" parameterType="employee">
+        INSERT INTO employee (employee_account, employee_name, employee_gender,
+                              employee_age, entry_time, staff, employee_message,
+        employee_password)
+        VALUES (#{employeeAccount}, #{employeeName}, #{employeeGender},
+                #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage},
+        #{employeePassword})
+    </insert>
+
+
+
+
+
+
+    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="employee">
+        SELECT *
+        FROM employee
+        WHERE employee_account = #{employeeAccount}
+    </select>
+
+    <select id="selectTotalCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM employee
+    </select>
+
+    <!-- 新增：更新员工信息，根据账号更新 -->
+    <update id="updateEmployeeByAccount" parameterType="employee">
+        UPDATE employee
+        SET employee_name = #{employeeName},
+        employee_gender = #{employeeGender},
+        employee_age = #{employeeAge},
+        employee_message = #{employeeMessage}
+        WHERE employee_account = #{employeeAccount}
+    </update>
+
+</mapper>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<!-- 替换为员工专属头部 -->
+<head th:replace="employeeCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<!-- 替换为员工专属导航栏 -->
+<nav th:replace="employeeCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <!-- 替换为员工专属侧边栏（移除管理员导航项） -->
+    <div th:replace="employeeCommon::common-sidenav"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">课程报名信息</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>所有课程报名记录
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                            <tr>
+                                <th>课程编号</th>
+                                <th>课程名称</th>
+                                <th>报名会员</th>
+                                <th>会员账号</th>
+                                <th>上课时间</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="order:${allClassOrders}">
+                                <td th:text="${order.classId}"></td>
+                                <td th:text="${order.className}"></td>
+                                <td th:text="${order.memberName}"></td>
+                                <!-- 补充剩余表格内容 -->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- 替换为员工专属页脚 -->
+        <footer th:replace="employeeCommon::common-footer"></footer>
+    </div>
+</div>
+<!-- 替换为员工专属脚本 -->
+<div th:include="employeeCommon::common-scripts"></div>
+</body>
+</html>

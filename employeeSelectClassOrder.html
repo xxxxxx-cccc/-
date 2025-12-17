@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="employeeCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="employeeCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="employeeCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">报名信息</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/employee/toEmployeeMain}">主页</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/employee/class/selClass}">课程管理</a></li>
+                    <li class="breadcrumb-item active">报名信息</li>
+                </ol>
+
+                <div class="card mb-4">
+
+                    <!--当classOrderList不为空时-->
+                    <div th:if="${classOrderList}">
+                        <table class="table table-hover">
+                            <tr>
+                                <td><strong>会员卡号：</strong></td>
+                                <td><strong>报名会员：</strong></td>
+                            </tr>
+                            <tr th:each="order:${classOrderList}">
+                                <td th:text="${order.memberAccount}">无</td>
+                                <td th:text="${order.memberName}">无</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <a th:href="@{/employee/class/selClass}" style="text-align:center;margin-top:10px;margin-bottom:20px">
+                        <input type="submit" class="btn btn-outline-secondary" value="返回">
+                    </a>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="employeeCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="employeeCommon::common-scripts"></div>
+</body>
+</html>
